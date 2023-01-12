@@ -171,6 +171,7 @@ class ObjSimulationWin(code):
         super().__init__(*args, **kwargs)
 
         self.run_()
+
     def draw(self) -> None:
         for i in self.circles:
             i.draw()
@@ -190,7 +191,6 @@ class ObjSimulationWin(code):
                 # i.drawCircle()
             self.draw()
         pygame.quit()
-
 
 def main(): #{
 	ObjSimulationWin()

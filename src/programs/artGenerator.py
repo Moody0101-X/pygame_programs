@@ -5,11 +5,11 @@ this module helps you draw cirlces in pygame.
 
 import pygame
 from random import choice, randint, uniform
-from BoilerPlate import code
+from .BoilerPlate import code
 from math import sin, tan, cos, sqrt
 from numpy import random
 
-class circle:
+class pixel:
     
     def __init__(self, win, x, y, color, radius):
         self.win = win
@@ -20,6 +20,7 @@ class circle:
         self.velocity = 4
         self.Ydirection = 1
         self.Xdirection = 1
+  
     def setdimensions(self, w, h):
         self.w = w
         self.h = h
@@ -39,60 +40,21 @@ class circle:
         elif self.y <= 50:
             self.Ydirection = 1
         
-        self.y += self.Ydirection * randint(0, 5) * uniform(0, 1) * randint(0, 5)
-        self.x +=  self.Xdirection * randint(0, 5) * uniform(0, 1) * randint(0, 5)
+        self.y += self.Ydirection * randint(0, 5) * uniform(0, 1) * randint(0, 5) * choice([-1, 1])
+        self.x +=  self.Xdirection * randint(0, 5) * uniform(0, 1) * randint(0, 5) * choice([-1, 1])
 
-    def move_(self):
-        
-        if self.x >= self.w - 50:
-            self.Xdirection = -1
-        elif self.x <= 50:
-            self.Xdirection = 1
-        if self.y >= self.h - 50:
-            self.Ydirection = -1
-        elif self.y <= 50:
-            self.Ydirection = 1
-        
-        self.y += self.Ydirection * cos(randint(0, 360)) * randint(0, 5)
-        self.x +=  self.Xdirection * cos(randint(0, 360)) * randint(0, 5)
-    def move__(self):
-        
-        if self.x >= self.w - 50:
-            self.Xdirection = -1
-        elif self.x <= 50:
-            self.Xdirection = 1
-        if self.y >= self.h - 50:
-            self.Ydirection = -1
-        elif self.y <= 50:
-            self.Ydirection = 1
-
-        self.y += self.Ydirection * tan(randint(0, 360) * randint(0, 5))
-        self.x +=  self.Xdirection * sin((randint(0, 360)) * randint(0, 5))
-
-    # def drawCircle(self):
-    #     """
-    #     x^2 + y^2 = r^2
-    #     x = sqrt(r^2 - y^2)
-    #     y = sqrt(r^2 - x^2)
-    #     """
-    #     r = 2
-    #     if r*r - self.x * self.x > 0 and r*r - self.y * self.y > 0:
-    #         self.y +=  sqrt(r*r - self.x * self.x)
-    #         print(self.y)
-    #         self.x +=  sqrt(r*r - self.y * self.y)
-    #         print(self.x)
-
-
-class BouncingCircles(code):
+class ArtGenerator(code):
     """ A cirlce wrapper class that inherits from code. """
 
     def __init__(self, *args, **kwargs) -> None:
+
         super().__init__(*args, **kwargs)
         self.circles = [
-            circle(self.window, x, y, (randint(0, 255), randint(0, 255), randint(0, 255)), 1) for x, y in zip([ i for i in range(50, 1000)], [ i for i in range(50, 1000)])
+            pixel(self.window, x, y, (0, 0, randint(0, 50)), 10) for x, y in zip([ i for i in range(50, 300)], [ i for i in range(50, 300)])
         ]
 
         self.run_()
+
     def draw(self) -> None:
         for i in self.circles:
             i.draw()
@@ -107,19 +69,13 @@ class BouncingCircles(code):
             # self.window.fill(self.Backgroundcolor)
             for i in self.circles:
                 i.setdimensions(self.width, self.height)
-                func = choice([i.move, i.move_, i.move__])
-                func()
+                i.move()
                 # i.drawCircle()
             self.draw()
         pygame.quit()
 
 if __name__ == "__main__":
-    BouncingCircles("Circle", (255, 255, 255), 1080, 720)
-
-
-
-
-
+    ArtGenerator("Circle", (255, 255, 255), 1080, 720)
 
 """
 

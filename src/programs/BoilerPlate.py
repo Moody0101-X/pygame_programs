@@ -1,7 +1,7 @@
 import pygame
 
 class code:
-    """Just an initializer, But running the Instance is manual."""
+    """ THIS CLASS MADE TO BE INHERETED ."""
     def __init__(self, Title, Backgroundcolor=(255, 255, 255), width=None, height=None):
         self.Title = Title
         self.width = width
@@ -17,7 +17,3 @@ class code:
         self.window = pygame.display.set_mode((self.width, self.height))
         self.window.fill(self.Backgroundcolor)
         self.run = True
-
-class Nothing:
-    def __init__(self):
-        pass

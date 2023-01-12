@@ -8,9 +8,8 @@ circle:
 
 """
 
-
 import pygame
-from BoilerPlate import code
+from .BoilerPlate import code
 from random import randint
 from math import sin, tan, cos, sqrt
 from numpy import random

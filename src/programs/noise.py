@@ -1,6 +1,6 @@
 
 import pygame
-from BoilerPlate import code
+from .BoilerPlate import code
 from random import randint
 from math import sin, tan, cos, sqrt
 from numpy import random
@@ -110,7 +110,7 @@ class boid:
 
 		pygame.draw.circle(self.win, self.color, (self.position.x, self.position.y), 1)
 
-class Drawer(code):
+class Noise(code):
 	""" A cirlce wrapper class that inherits from code. """
 
 	def __init__(self, *args, **kwargs) -> None:
@@ -138,4 +138,4 @@ class Drawer(code):
 		pygame.quit()
 
 if __name__ == "__main__":
-	Drawer("Noise", (0, 0, 0), 1080, 720)
+	Noise("Noise", (0, 0, 0), 1080, 720)
