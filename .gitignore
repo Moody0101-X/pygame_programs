@@ -1,0 +1,14 @@
+
+# cache 
+__pycache__
+/__pycache__
+*/__pycache__
+
+# My MD preview file.
+index.html
+./index.html
+
+# venv
+./venv
+/venv
+venv
